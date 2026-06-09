@@ -10,7 +10,7 @@
 
 :root{
   --navy:#0A1628;
-  --navy2:#102040; 
+  --navy2:#102040;
   --navy3:#1A3060;
   --gold:#D4A017;
   --gold2:#F0C040;
@@ -264,12 +264,12 @@ body{
   display:flex;align-items:center;justify-content:center;
   font-size:18px;flex-shrink:0;
 }
-.ck-bisnis  .card-icon{background:#E8F4FC;}
-.ck-akl     .card-icon{background:#FEF3DA;}
-.ck-pemasaran.card-icon{background:#E0F5EF;}
+.ck-bisnis   .card-icon{background:#E8F4FC;}
+.ck-akl      .card-icon{background:#FEF3DA;}
+.ck-pemasaran .card-icon{background:#E0F5EF;}
 .ck-pariwisata .card-icon{background:#FDEAF0;}
-.ck-tkjt1   .card-icon{background:#F0E8FF;}
-.ck-tkjt2   .card-icon{background:#EDE0FF;}
+.ck-tkjt1    .card-icon{background:#F0E8FF;}
+.ck-tkjt2    .card-icon{background:#EDE0FF;}
 .ck-listrik1 .card-icon{background:#FFF0E0;}
 .ck-listrik2 .card-icon{background:#FFE8E0;}
 
@@ -278,12 +278,12 @@ body{
   font-size:10px;font-weight:700;letter-spacing:.08em;
   text-transform:uppercase;margin-bottom:3px;
 }
-.ck-bisnis .card-kelas-label{color:var(--sky);}
-.ck-akl .card-kelas-label{color:var(--amber);}
+.ck-bisnis   .card-kelas-label{color:var(--sky);}
+.ck-akl      .card-kelas-label{color:var(--amber);}
 .ck-pemasaran .card-kelas-label{color:var(--teal);}
 .ck-pariwisata .card-kelas-label{color:var(--rose);}
-.ck-tkjt1 .card-kelas-label{color:var(--violet);}
-.ck-tkjt2 .card-kelas-label{color:#7B4FC0;}
+.ck-tkjt1    .card-kelas-label{color:var(--violet);}
+.ck-tkjt2    .card-kelas-label{color:#7B4FC0;}
 .ck-listrik1 .card-kelas-label{color:var(--amber);}
 .ck-listrik2 .card-kelas-label{color:#903808;}
 
@@ -474,26 +474,26 @@ footer strong{color:rgba(255,255,255,.60);}
         <div class="hvc-row">
           <div class="hvc-dot" style="background:#2E8FE8;"></div>
           <div class="hvc-name">X Manajemen Perkantoran</div>
-          <span class="hvc-badge hvc-soon">Segera</span>
+          <span class="hvc-badge hvc-on">Aktif</span>
         </div>
         <div class="hvc-row">
           <div class="hvc-dot" style="background:#10B884;"></div>
           <div class="hvc-name">X Pemasaran</div>
-          <span class="hvc-badge hvc-soon">Segera</span>
+          <span class="hvc-badge hvc-on">Aktif</span>
         </div>
         <div class="hvc-row">
           <div class="hvc-dot" style="background:#9254D8;"></div>
           <div class="hvc-name">X TKJ &amp; Telekomunikasi 1</div>
-          <span class="hvc-badge hvc-soon">Segera</span>
+          <span class="hvc-badge hvc-on">Aktif</span>
         </div>
         <div class="hvc-row">
           <div class="hvc-dot" style="background:#E07020;"></div>
           <div class="hvc-name">X Teknik Ketenagalistrikan 1</div>
-          <span class="hvc-badge hvc-soon">Segera</span>
+          <span class="hvc-badge hvc-on">Aktif</span>
         </div>
         <div class="hvc-row">
           <div class="hvc-dot" style="background:#AAA;"></div>
-          <div class="hvc-name">+ 11 kelas lainnya</div>
+          <div class="hvc-name">+ kelas lainnya</div>
           <span class="hvc-badge hvc-soon">Menyusul</span>
         </div>
       </div>
@@ -513,8 +513,8 @@ footer strong{color:rgba(255,255,255,.60);}
 
   <!-- TABS -->
   <div class="tabs-bar">
-    <button class="tab-btn active" onclick="switchTab('x')">🎓 Kelas X</button>
-    <button class="tab-btn" onclick="switchTab('xi')">📚 Kelas XI</button>
+    <button class="tab-btn active" onclick="switchTab('x', this)">🎓 Kelas X</button>
+    <button class="tab-btn" onclick="switchTab('xi', this)">📚 Kelas XI</button>
   </div>
 
   <!-- ═══ KELAS X ═══ -->
@@ -527,7 +527,6 @@ footer strong{color:rgba(255,255,255,.60);}
           Daftar portal nilai untuk semua jurusan Kelas X. Klik <strong style="color:var(--violet)">✏️</strong> untuk menambahkan link portal masing-masing kelas.
         </p>
       </div>
-
       <div class="kelas-grid" id="grid-x"></div>
     </section>
   </div>
@@ -542,7 +541,6 @@ footer strong{color:rgba(255,255,255,.60);}
           Daftar portal nilai untuk semua jurusan Kelas XI. Klik <strong style="color:var(--violet)">✏️</strong> untuk menambahkan link portal masing-masing kelas.
         </p>
       </div>
-
       <div class="kelas-grid" id="grid-xi"></div>
     </section>
   </div>
@@ -559,47 +557,67 @@ footer strong{color:rgba(255,255,255,.60);}
 <script>
 /* ═══ DATA KELAS ═══ */
 const KELAS_X = [
-  { id:'x-mplb',  name:'Manajemen Perkantoran dan Layanan Bisnis', icon:'🏢', css:'ck-bisnis',    label:'Kelas X · MPLB'  },
-  { id:'x-akl',   name:'Akuntansi dan Keuangan Lembaga',           icon:'📊', css:'ck-akl',       label:'Kelas X · AKL'   },
-  { id:'x-pms',   name:'Pemasaran',                                 icon:'🛍️', css:'ck-pemasaran', label:'Kelas X · Pemasaran' },
-  { id:'x-ulp',   name:'Usaha Layanan Pariwisata',                  icon:'✈️', css:'ck-pariwisata',label:'Kelas X · ULP'   },
-  { id:'x-tjkt1', name:'Teknik Jaringan Komputer dan Telekomunikasi 1', icon:'🌐', css:'ck-tkjt1', label:'Kelas X · TKJT 1' },
-  { id:'x-tjkt2', name:'Teknik Jaringan Komputer dan Telekomunikasi 2', icon:'💻', css:'ck-tkjt2', label:'Kelas X · TKJT 2' },
-  { id:'x-tk1',   name:'Teknik Ketenagalistrikan 1',                icon:'⚡', css:'ck-listrik1',  label:'Kelas X · TL 1'  },
-  { id:'x-tk2',   name:'Teknik Ketenagalistrikan 2',                icon:'🔌', css:'ck-listrik2',  label:'Kelas X · TL 2'  },
+  { id:'x-mplb',  name:'Manajemen Perkantoran dan Layanan Bisnis',          icon:'🏢', css:'ck-bisnis',    label:'Kelas X · MPLB'      },
+  { id:'x-akl',   name:'Akuntansi dan Keuangan Lembaga',                    icon:'📊', css:'ck-akl',       label:'Kelas X · AKL'       },
+  { id:'x-pms',   name:'Pemasaran',                                          icon:'🛍️', css:'ck-pemasaran', label:'Kelas X · Pemasaran' },
+  { id:'x-ulp',   name:'Usaha Layanan Pariwisata',                           icon:'✈️', css:'ck-pariwisata',label:'Kelas X · ULP'       },
+  { id:'x-tjkt1', name:'Teknik Jaringan Komputer dan Telekomunikasi 1',      icon:'🌐', css:'ck-tkjt1',     label:'Kelas X · TKJT 1'   },
+  { id:'x-tjkt2', name:'Teknik Jaringan Komputer dan Telekomunikasi 2',      icon:'💻', css:'ck-tkjt2',     label:'Kelas X · TKJT 2'   },
+  { id:'x-tk1',   name:'Teknik Ketenagalistrikan 1',                         icon:'⚡', css:'ck-listrik1',  label:'Kelas X · TL 1'     },
+  { id:'x-tk2',   name:'Teknik Ketenagalistrikan 2',                         icon:'🔌', css:'ck-listrik2',  label:'Kelas X · TL 2'     },
 ];
 
 const KELAS_XI = [
-  { id:'xi-mplb',  name:'Manajemen Perkantoran dan Layanan Bisnis', icon:'🏢', css:'ck-bisnis',    label:'Kelas XI · MPLB'  },
-  { id:'xi-akl',   name:'Akuntansi dan Keuangan Lembaga',           icon:'📊', css:'ck-akl',       label:'Kelas XI · AKL'   },
-  { id:'xi-pms',   name:'Pemasaran',                                 icon:'🛍️', css:'ck-pemasaran', label:'Kelas XI · Pemasaran' },
-  { id:'xi-ulp',   name:'Usaha Layanan Pariwisata',                  icon:'✈️', css:'ck-pariwisata',label:'Kelas XI · ULP'   },
-  { id:'xi-tkjt1', name:'Teknik Jaringan Komputer dan Telekomunikasi 1', icon:'🌐', css:'ck-tkjt1', label:'Kelas XI · TKJT 1' },
-  { id:'xi-tkjt2', name:'Teknik Jaringan Komputer dan Telekomunikasi 2', icon:'💻', css:'ck-tkjt2', label:'Kelas XI · TKJT 2' },
-  { id:'xi-tl1',   name:'Teknik Ketenagalistrikan 1',               icon:'⚡', css:'ck-listrik1',   label:'Kelas XI · TL 1'  },
-  { id:'xi-tl2',   name:'Teknik Ketenagalistrikan 2',               icon:'🔌', css:'ck-listrik2',   label:'Kelas XI · TL 2'  },
+  { id:'xi-mplb',  name:'Manajemen Perkantoran dan Layanan Bisnis',          icon:'🏢', css:'ck-bisnis',    label:'Kelas XI · MPLB'      },
+  { id:'xi-akl',   name:'Akuntansi dan Keuangan Lembaga',                    icon:'📊', css:'ck-akl',       label:'Kelas XI · AKL'       },
+  { id:'xi-pms',   name:'Pemasaran',                                          icon:'🛍️', css:'ck-pemasaran', label:'Kelas XI · Pemasaran' },
+  { id:'xi-ulp',   name:'Usaha Layanan Pariwisata',                           icon:'✈️', css:'ck-pariwisata',label:'Kelas XI · ULP'       },
+  { id:'xi-tkjt1', name:'Teknik Jaringan Komputer dan Telekomunikasi 1',      icon:'🌐', css:'ck-tkjt1',     label:'Kelas XI · TKJT 1'   },
+  { id:'xi-tkjt2', name:'Teknik Jaringan Komputer dan Telekomunikasi 2',      icon:'💻', css:'ck-tkjt2',     label:'Kelas XI · TKJT 2'   },
+  { id:'xi-tl1',   name:'Teknik Ketenagalistrikan 1',                         icon:'⚡', css:'ck-listrik1',  label:'Kelas XI · TL 1'     },
+  { id:'xi-tl2',   name:'Teknik Ketenagalistrikan 2',                         icon:'🔌', css:'ck-listrik2',  label:'Kelas XI · TL 2'     },
 ];
 
-/* ═══ DEFAULT LINKS ═══ */
+/* ═══ DEFAULT LINKS ═══
+   Semua link default didefinisikan di sini.
+   Kalau ada link baru tinggal tambah di objek ini.
+*/
 const DEFAULT_LINKS = {
-  'x-akl':  'https://alex-bahy.github.io/portal-XAKL/',
-  'x-pms':  'https://alex-bahy.github.io/Portal-XPMS-2026/',
-  'x-mplb': 'https://alex-bahy.github.io/Portal-Kelas-XMPLB-2026/',
-  'x-ulp': 'https://alex-bahy.github.io/Portal-Kelas-XULP-2026/',
+  'x-akl'  : 'https://alex-bahy.github.io/portal-XAKL/',
+  'x-pms'  : 'https://alex-bahy.github.io/Portal-XPMS-2026/',
+  'x-mplb' : 'https://alex-bahy.github.io/Portal-Kelas-XMPLB-2026/',
+  'x-ulp'  : 'https://alex-bahy.github.io/Portal-Kelas-XULP-2026/',
   'x-tjkt1': 'https://alex-bahy.github.io/Portal-Kelas-XTJKT1-2026/',
   'x-tjkt2': 'https://alex-bahy.github.io/Portal-Kelas-XTJKT2-2026/',
-  'x-tk1': 'https://alex-bahy.github.io/Portal-Kelas-XTK1-2026/'
+  'x-tk1'  : 'https://alex-bahy.github.io/Portal-Kelas-XTK1-2026/',
 };
 
 const STORAGE_KEY = 'smk_portal_links_v2';
 
-function loadLinks(){ try{ return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}'); }catch(e){ return {}; } }
-function saveLinks(d){ try{ localStorage.setItem(STORAGE_KEY,JSON.stringify(d)); }catch(e){} }
+function loadLinks(){
+  try{ return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
+  catch(e){ return {}; }
+}
+function saveLinks(d){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); }
+  catch(e){}
+}
+
+/* ═══ RESOLVE URL ═══
+   Prioritas: localStorage → DEFAULT_LINKS → kosong
+   localStorage yang menyimpan string kosong ("") diabaikan,
+   sehingga DEFAULT_LINKS tetap berlaku.
+*/
+function resolveUrl(id){
+  const links = loadLinks();
+  const saved = links[id];
+  if(saved && saved.trim() !== '') return saved.trim();
+  return DEFAULT_LINKS[id] || '';
+}
 
 /* ═══ RENDER CARDS ═══ */
 function renderCard(kelas){
-  const links = loadLinks();
-  const url = links[kelas.id] || DEFAULT_LINKS[kelas.id] || '';
+  const url  = resolveUrl(kelas.id);
   const isOn = !!url;
 
   return `
@@ -615,18 +633,28 @@ function renderCard(kelas){
       <div class="edit-panel" id="edit-${kelas.id}">
         <label>🔗 Link Portal Kelas Ini</label>
         <div class="edit-panel-row">
-          <input type="url" class="edit-inp" id="inp-${kelas.id}" placeholder="https://username.github.io/portal-kelas/">
+          <input type="url" class="edit-inp" id="inp-${kelas.id}"
+            placeholder="https://username.github.io/portal-kelas/"
+            value="${url}">
           <button class="edit-save-btn" onclick="saveLink('${kelas.id}')">Simpan</button>
           <button class="edit-clear-btn" onclick="clearLink('${kelas.id}')" title="Hapus link">✕</button>
         </div>
         <div class="edit-hint">Paste link portal kelas, tombol "Buka Portal" akan langsung aktif.</div>
       </div>
       <div class="card-foot">
-        <a href="${isOn ? url : '#'}" class="link-btn ${isOn ? 'link-on' : 'link-off'}" id="btn-${kelas.id}" target="_blank" rel="noopener" ${!isOn ? 'style="pointer-events:none;"' : ''}>
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
+        <a href="${isOn ? url : '#'}"
+           class="link-btn ${isOn ? 'link-on' : 'link-off'}"
+           id="btn-${kelas.id}"
+           target="_blank" rel="noopener"
+           ${!isOn ? 'style="pointer-events:none;"' : ''}>
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M2 8h12M9 3l5 5-5 5"/>
+          </svg>
           Buka Portal
         </a>
-        <span class="badge ${isOn ? 'badge-on' : 'badge-off'}" id="badge-${kelas.id}">${isOn ? 'Aktif ✓' : 'Segera'}</span>
+        <span class="badge ${isOn ? 'badge-on' : 'badge-off'}" id="badge-${kelas.id}">
+          ${isOn ? 'Aktif ✓' : 'Segera'}
+        </span>
       </div>
     </div>`;
 }
@@ -634,102 +662,108 @@ function renderCard(kelas){
 function renderGrid(kelasArr, gridId){
   const el = document.getElementById(gridId);
   el.innerHTML = kelasArr.map(renderCard).join('');
-  // scroll animation
-  el.querySelectorAll('.kelas-card').forEach((c,i)=>{
-    c.style.opacity='0';c.style.transform='translateY(18px)';
-    c.style.transition=`opacity .4s ease ${i*.06}s, transform .4s ease ${i*.06}s, box-shadow .2s, border-color .2s`;
+  // scroll-in animation
+  el.querySelectorAll('.kelas-card').forEach((c, i) => {
+    c.style.opacity = '0';
+    c.style.transform = 'translateY(18px)';
+    c.style.transition = `opacity .4s ease ${i * .06}s, transform .4s ease ${i * .06}s, box-shadow .2s, border-color .2s`;
     observer.observe(c);
   });
 }
 
-/* ═══ APPLY LINK ═══ */
+/* ═══ APPLY LINK (update DOM tanpa re-render) ═══ */
 function applyLink(id, url){
-  const btn   = document.getElementById('btn-'+id);
-  const badge = document.getElementById('badge-'+id);
-  if(!btn||!badge) return;
+  const btn   = document.getElementById('btn-' + id);
+  const badge = document.getElementById('badge-' + id);
+  if(!btn || !badge) return;
   if(url){
-    btn.href=url; btn.className='link-btn link-on';
-    btn.style.pointerEvents='';
-    badge.textContent='Aktif ✓'; badge.className='badge badge-on';
+    btn.href = url;
+    btn.className = 'link-btn link-on';
+    btn.style.pointerEvents = '';
+    badge.textContent = 'Aktif ✓';
+    badge.className = 'badge badge-on';
   } else {
-    btn.href='#'; btn.className='link-btn link-off';
-    btn.style.pointerEvents='none';
-    badge.textContent='Segera'; badge.className='badge badge-off';
+    btn.href = '#';
+    btn.className = 'link-btn link-off';
+    btn.style.pointerEvents = 'none';
+    badge.textContent = 'Segera';
+    badge.className = 'badge badge-off';
   }
 }
 
 /* ═══ EDIT SYSTEM ═══ */
 function toggleEdit(id){
-  const panel=document.getElementById('edit-'+id);
-  const inp=document.getElementById('inp-'+id);
-  const isOpen=panel.classList.contains('open');
-  document.querySelectorAll('.edit-panel.open').forEach(p=>p.classList.remove('open'));
+  const panel = document.getElementById('edit-' + id);
+  const inp   = document.getElementById('inp-' + id);
+  const isOpen = panel.classList.contains('open');
+  document.querySelectorAll('.edit-panel.open').forEach(p => p.classList.remove('open'));
   if(!isOpen){
     panel.classList.add('open');
-    const links=loadLinks();
-    inp.value=links[id]||DEFAULT_LINKS[id]||'';
-    setTimeout(()=>{inp.focus();inp.select();},60);
+    inp.value = resolveUrl(id);
+    setTimeout(() => { inp.focus(); inp.select(); }, 60);
   }
-  inp.onkeydown=(e)=>{
-    if(e.key==='Enter') saveLink(id);
-    if(e.key==='Escape') panel.classList.remove('open');
+  inp.onkeydown = (e) => {
+    if(e.key === 'Enter')  saveLink(id);
+    if(e.key === 'Escape') panel.classList.remove('open');
   };
 }
 
 function saveLink(id){
-  const inp=document.getElementById('inp-'+id);
-  let url=inp.value.trim();
+  const inp = document.getElementById('inp-' + id);
+  let url = inp.value.trim();
   if(!url){ showToast('⚠️ Link tidak boleh kosong.'); return; }
-  if(!url.startsWith('http')){ url='https://'+url; inp.value=url; }
-  const links=loadLinks(); links[id]=url; saveLinks(links);
-  applyLink(id,url);
-  document.getElementById('edit-'+id).classList.remove('open');
+  if(!url.startsWith('http')){ url = 'https://' + url; inp.value = url; }
+  const links = loadLinks();
+  links[id] = url;
+  saveLinks(links);
+  applyLink(id, url);
+  document.getElementById('edit-' + id).classList.remove('open');
   showToast('✅ Link berhasil disimpan!');
 }
 
 function clearLink(id){
-  const links=loadLinks(); delete links[id]; saveLinks(links);
-  const def=DEFAULT_LINKS[id]||null;
-  applyLink(id,def);
-  if(def) document.getElementById('inp-'+id).value=def;
-  document.getElementById('edit-'+id).classList.remove('open');
-  showToast('🗑️ Link dihapus.');
+  const links = loadLinks();
+  delete links[id];
+  saveLinks(links);
+  // setelah hapus dari localStorage, fallback ke default
+  const def = DEFAULT_LINKS[id] || '';
+  applyLink(id, def);
+  document.getElementById('inp-' + id).value = def;
+  document.getElementById('edit-' + id).classList.remove('open');
+  showToast('🗑️ Link dihapus, kembali ke default.');
 }
 
 /* ═══ TABS ═══ */
-function switchTab(tab){
-  document.querySelectorAll('.level-section').forEach(s=>s.classList.remove('visible'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('tab-'+tab).classList.add('visible');
-  event.currentTarget.classList.add('active');
+function switchTab(tab, btn){
+  document.querySelectorAll('.level-section').forEach(s => s.classList.remove('visible'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('visible');
+  btn.classList.add('active');
 }
 
 /* ═══ TOAST ═══ */
 let toastTimer;
 function showToast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg; t.classList.add('show');
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>t.classList.remove('show'),2600);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2600);
 }
 
 /* ═══ INTERSECTION OBSERVER ═══ */
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
   });
-},{threshold:0.07});
+}, { threshold: 0.07 });
 
 /* ═══ INIT ═══ */
 renderGrid(KELAS_X,  'grid-x');
 renderGrid(KELAS_XI, 'grid-xi');
-
-// apply saved/default links after render
-const savedLinks=loadLinks();
-[...KELAS_X,...KELAS_XI].forEach(k=>{
-  const url=savedLinks[k.id]||DEFAULT_LINKS[k.id]||null;
-  if(url) applyLink(k.id,url);
-});
 </script>
 </body>
 </html>
